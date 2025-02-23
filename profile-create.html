@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Create Your Profile</h1>
+    </header>
+
+    <section class="profile-create">
+        <form id="profile-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" placeholder="Your Full Name" required>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Your Username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Your Email" required>
+
+            <label for="bio">Bio:</label>
+            <textarea id="bio" placeholder="Tell us about yourself..." required></textarea>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" placeholder="Your Location" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required>
+
+            <label for="profile-picture">Profile Picture:</label>
+            <input type="file" id="profile-picture" accept="image/*" required>
+
+            <button type="submit">Create Profile</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Social Media Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

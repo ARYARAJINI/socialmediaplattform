@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Create a New Post</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="profile.html">Your Profile</a>
+        </nav>
+    </header>
+
+    <section class="create-post">
+        <form id="post-form">
+            <textarea id="post-quote" placeholder="Write your quote..." required></textarea>
+            <label for="post-image">Choose an image (optional):</label>
+<input type="file" id="post-image" accept="image/*" required />
+
+            <button type="submit">Post</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Social Media Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

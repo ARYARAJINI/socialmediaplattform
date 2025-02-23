@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Platform</title> <!-- Corrected title tag -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 style="text-align: center;">Social Media Platform</h1> <!-- Centering the header text directly using style -->
+    </header>
+
+    <section class="profile">
+        <div class="profile-header">
+            <div>
+                <img src="images.png" alt="Profile Picture" class="profile-img">
+                <!-- Add the correct image source for the profile image -->
+            </div>
+            <h2>ARYA'S SOCIAL MEDIA PLATFORM</h2> <!-- Add the user's name here -->
+            <p>Bio: Passionate about technology and software development. 🚀</p>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="profile.html">Profile</a>
+                <a href="post.html">Create Post</a>
+            </nav>
+        </div>
+
+        <div class="posts">
+            <h3>Your Posts</h3>
+            <!-- Display posts here dynamically later -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Social Media Platform</p>
+    </footer>
+
+</body>
+</html>
+<!-- Container to display posts -->
+<div id="postsContainer"></div>
+
+<!-- Script to fetch and display posts -->
+<script>
+// Fetch all posts from the server
+function fetchPosts() {
+    fetch('http://localhost:3000/posts')
+        .then(response => response.json())
+        .then(posts => {
+            displayPosts(posts);
+        })
+        .catch(error => console.error('Error fetching posts:', error));
+}
+
+// Function to display posts
+function displayPosts(posts) {
+    const postsContainer = document.getElementById('postsContainer');
+    postsContainer.innerHTML = ''; // Clear previous posts
+
+    posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.classList.add('post');
+        postElement.innerHTML = `
+            <div class="post-header">
+                <span>${post.userId.username}</span> <!-- Display the username of the poster -->
+            </div>
+            <div class="post-content">
+                <p>${post.content}</p>
+            </div>
+            <div class="post-actions">
+                <button onclick="likePost(${post._id})">Like</button>
+                <button onclick="commentOnPost(${post._id})">Comment</button>
+                <button onclick="sharePost(${post._id})">Share</button>
+            </div>
+            <div class="comments-container" id="comments-${post._id}">
+                <!-- Comments will be shown here -->
+            </div>
+        `;
+        postsContainer.appendChild(postElement);
+    });
+}
+
+// Functions for interacting with posts
+function likePost(postId) {
+    alert(`Post ${postId} liked!`);
+    // Send like to the backend (example)
+    // fetch(`/likePost/${postId}`, { method: 'POST' });
+}
+
+function commentOnPost(postId) {
+    const commentText = prompt('Enter your comment:');
+    if (commentText) {
+        alert(`Your comment: "${commentText}" has been posted on post ${postId}`);
+        // Add the comment to the UI or send to the backend
+        const commentsContainer = document.getElementById(`comments-${postId}`);
+        const commentElement = document.createElement('div');
+        commentElement.textContent = commentText;
+        commentsContainer.appendChild(commentElement);
+    }
+}
+
+function sharePost(postId) {
+    alert(`Post ${postId} shared!`);
+    // Example of sharing a post URL (you can enhance it for real sharing logic)
+    const postUrl = `http://localhost:3000/posts/${postId}`;
+    prompt("Copy this link to share:", postUrl);
+}
+
+// Fetch and display posts on page load
+fetchPosts();
+</script>
+
+
